@@ -1,0 +1,34 @@
+{
+	"name": "fj_dialog",// 插件名字,must
+    "title": "FJ_Dialog", //用于展示的插件名字,must
+    "description": "jQuery plugin for color manipulation and animation support.", // 描述
+    "keywords": [
+        "dialog", // 关键词,选填
+        "animation",
+        "ajax"
+    ],
+    "version": "0.1", //当前版本,必填
+    "author": { // 作者,必填
+        "name": "O2",
+        "url": "https://github.com/jquery/jquery-color/blob/2.1.2/AUTHORS.txt"
+    },
+    "maintainers": [
+        {
+            "name": "O2",
+            "email": "ww981134442@gmail.com"
+        }
+    ],
+    "licenses": [// 许可证,必填
+        {
+            "type": "GPLv2",
+            "url": "https://github.com/jquery/jquery-color/blob/2.1.2/MIT-LICENSE.txt"
+        }
+    ],
+    "bugs": "https://github.com/jquery/jquery-color/issues",
+    "homepage": "https://github.com/jquery/jquery-color",
+    "docs": "https://github.com/jquery/jquery-color",
+    "download": "http://code.jquery.com/#color",
+    "dependencies": { // 依赖关系, 必填
+        "jquery": ">=1.3"
+    }
+}

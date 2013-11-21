@@ -1,0 +1,30 @@
+@CHARSET "UTF-8";
+body {
+	padding: 0;
+	margin: 0;
+}
+
+.fjdialog_show_default_style {
+	font-family: 'Microsoft Yahei','微软雅黑','simsun';
+	/* font: 12px 'Microsoft Yahei','微软雅黑','simsun',Arial,sans-serif; */
+	background-color: #20b2aa; /*#00bfff深天蓝,#5F9EA0军兰,#8fbc8f暗海蓝,#00bfff深天蓝,#20b2aa亮海蓝*/
+	text-align: center;
+	width: 200px;
+	height: 85px;
+	line-height: 85px;
+}
+
+.fjdialog_show_default_style img {
+	height: 70px;
+	width: 70px;
+	margin-top: 7px;
+}
+
+.fjdialog_hidden_default_style {
+	font-family: 'Microsoft Yahei','微软雅黑','simsun';
+	background-color: #5F9EA0;
+	text-align: center;
+	width: 200px;
+	height: 85px;
+	line-height: 85px;
+}
