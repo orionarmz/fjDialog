@@ -1,16 +1,16 @@
 {
-	"name": "fj_dialog",// 插件名字,must
-    "title": "FJ_Dialog", //用于展示的插件名字,must
-    "description": "jQuery plugin for color manipulation and animation support.", // 描述
+    "name": "fj_dialog",
+    "title": "FJ_Dialog",
+    "description": "This is a free set tip box shows the content (including text, images, etc.), disappear when the tip of the content, prompt box into the popup style optional, configuration of transparency, fades, animation duration, CSS control style and independent and in and out of style, can set a delay, delay, disappear automatically hidden, optional relative browser users or overwrite events node are prohibited in operation again, can be independent appear and disappear, in the presence of a want to appear, when he wants to hide the hidden), and so on",
     "keywords": [
-        "dialog", // 关键词,选填
+        "dialog",
         "animation",
         "ajax"
     ],
-    "version": "0.1", //当前版本,必填
-    "author": { // 作者,必填
+    "version": "0.1",
+    "author": {
         "name": "O2",
-        "url": "https://github.com/jquery/jquery-color/blob/2.1.2/AUTHORS.txt"
+        "url": "https://github.com/2H2O2/fjDialog/blob/master/AUTHORS.txt"
     },
     "maintainers": [
         {
@@ -18,17 +18,16 @@
             "email": "ww981134442@gmail.com"
         }
     ],
-    "licenses": [// 许可证,必填
+    "licenses": [
         {
             "type": "GPLv2",
-            "url": "https://github.com/jquery/jquery-color/blob/2.1.2/MIT-LICENSE.txt"
+            "url": "https://github.com/2H2O2/fjDialog/blob/master/LICENSE.md"
         }
     ],
-    "bugs": "https://github.com/jquery/jquery-color/issues",
-    "homepage": "https://github.com/jquery/jquery-color",
-    "docs": "https://github.com/jquery/jquery-color",
-    "download": "http://code.jquery.com/#color",
-    "dependencies": { // 依赖关系, 必填
+    "homepage": "https://github.com/2H2O2/fjDialog",
+    "docs": "https://github.com/2H2O2/fjDialog/blob/master/使用说明.txt",
+    "download": "https://codeload.github.com/2H2O2/fjDialog/zip/master",
+    "dependencies": {
         "jquery": ">=1.3"
     }
 }
