@@ -5,7 +5,7 @@
 <title>FJDialogDemo</title>
 <link rel="stylesheet" type="text/css" href="css/fj_dialog_default.css">
 <script charset="utf-8" type="text/javascript" src="jq/jquery-1.10.2.min.js"></script>
-<script charset="utf-8" type="text/javascript" src="jq/jquery.fj_dialog.min.js"></script>
+<script charset="utf-8" type="text/javascript" src="jq/jquery.fj_dialog-1.0.2.min.js"></script>
 <script type="text/javascript">
 /**
  * <b>特别说明<b>
@@ -27,6 +27,7 @@
 		outClassName: 'fjdialog_hidden_default_style',
 		
 		displayedInTheBrowser: true, // 显示在浏览器边界, 默认样式, 设置为false则显示在点击节点内
+		positionIsFixed: true, // 相对浏览器静止显示
 		showTimeOut: 0, //显示时间触发后延迟多少时间显示dialog
 		hiddenTimeOut: 0, //消失时间触发后后延迟多少时间让dialog消失
 		autoHiddeenTime: 0, // 自动消失时间, 如果为0则不自动消失, 需要调用hidden()才会消失
@@ -201,7 +202,7 @@ $(function(){
 	fjDialogSettings.infoShowMessage = '我是样式18提示框,点击<b style="color: red;">19</b>关闭我';
 	fjDialogSettings.outPosition = 'top';
 	fjDialogSettings.autoHiddeenTime = 0;
-	fjDialogSettings.offsetEventLeft = 0; 
+	fjDialogSettings.offsetEventLeft = 0;
 	fjDialogSettings.offsetEventTop = 0;
 	fjDialogSettings.infoClassName = 'info'; // 必须配置
 	fjDialogSettings.displayedInTheBrowser = false; // 必须配置
@@ -211,7 +212,9 @@ $(function(){
 	$("#18").click(function(){
 		dialog18.showDialog();
 	});
-	$("#19").click(dialog18.hiddenDialog);
+	$("#19").click(function(){
+		dialog18.hiddenDialog("现在样式18的提示框该消失了");
+	});
 	$("#20").click(function(){
 		fjDialogSettings.infoClassName = 'info'; // 必须配置
 		fjDialogSettings.displayedInTheBrowser = false; // 必须配置
@@ -271,7 +274,7 @@ $(function(){
 		dialog23.showDialog();
 	});
 	$("#24").click(function(){
-		dialog23.hiddenDialog();
+		dialog23.hiddenDialog("在调用隐藏提示框函数时输入的字符串");
 	});
 
 	var message = $("#message");
@@ -486,7 +489,13 @@ color: red;
 			同时配置了进入显示的宽高、消失时的宽高则提示框在整个流程中的宽高都为进入时的宽高（进出的独立性有待改进）<br/>
 		</p>
 		
-		<h4>二、配置方式</h4>
+		<h4>二、新增功能</h4>
+		<p>
+			1. 加入可配置是否相对浏览器静止(positionIsFixed, 默认为true相对浏览器静止)
+			2. 在显示和消失时可以以参数形式加入提示语(fjDialog.showDialog("出现时的内容"), fjDialog.hiddenDialog("消失时的内容"), 提示：若用于Ajax等可以设置<b>延迟消失</b>以便看清消失前的提示内容)
+		</p>
+		
+		<h4>三、配置方式</h4>
 		<p>
 			/* <br/>
 			（1）<br/>
@@ -510,8 +519,9 @@ color: red;
 			outShowMessage: '消失', //消失过程中显示的提示内容<br/>
 			outClassName: 'fjdialog_hidden_default_style',<br/>
 						
-			/*-----------------------------高级点的设置--------------------------------*/<br/>
+			/*-----------------------------高级设置--------------------------------*/<br/>
 			displayedInTheBrowser: true, // 显示在浏览器边界, 默认样式, 设置为false则显示在点击节点内或附近显示<br/>
+			positionIsFixed: true, // 相对浏览器静止显示
 			showTimeOut: 0, //事件发生后延迟多少时间显示dialog<br/>
 			hiddenTimeOut: 0, //消失时间触发后后延迟多少时间让dialog消失<br/>
 			autoHiddeenTime: 0, // 自动消失时间, 如果为0则不自动消失, 需要调用hidden()才会消失<br/>
@@ -532,7 +542,7 @@ color: red;
 			/*<b>如果需要配置显示在浏览器相对禁止位置的提示框的<font color="red">宽高</font>,则可以采用(1)配置infoClassName传入的css设置宽高,<br>(2)传入css不设置宽高,配置displayedInTheBrowserWidth、displayedInTheBrowserHeight参数<br></b>*/<br/>
 		</p>
 		
-		<h4>三、调用方式：</h4>	
+		<h4>四、调用方式：</h4>	
 		<p>	
 			var publicFjDialog = $("body").fjDialog(fjDialogSettings);// fjDialogSettings为包含上述配置的变量<br/>
 			
@@ -540,20 +550,27 @@ color: red;
 			$("#2").click(publicFjDialog.hiddenDialog);// 提示框消失<br/>
 		</p>
 		
-		<h4>四、下一版本预计升级功能</h4>
+		<h4>五、bug修护或放弃功能</h4>
 		<p>
-			1. 开发者配置输入数据的验证以及提示加之纠正<br/>
-			2. 加入可配置是否相对浏览器静止<br/>
-			3. 指定提示框显示的地点（传入节点id名或者class名，已经实现，在生成提示框的时候用需要显示的节点的id或者class名初始化；初始化和调用可以是不同节点，注意用class初始化，默认在<br/>
-			第一次使用该class名的节点上显示）<br/>
-			4. <b>考虑</b>将提示框的宽高设置和默认为显示节点宽高作为可选项（可以选择提示框使用css配置的宽高（传入css切设置宽高）还是默认节点宽高（传入css切不设置宽高、或者宽高为0、或者宽<br/>
-			高为‘auto’），实际已经实现只是不容易配置）<br/>
-			5. 进入和退出宽高的独立<br/>
-			6. 是否内容居中等样式可以配置（<b>考虑</b>）<br/>
-			7. 如果浏览器右下角已经有了提示框则新的提示框在其上方显示<br/>
-			8. 显示和消失过程中overflow部分的样式不是让其向下抵而是直接隐藏<br/>
-			9. 可以在任何地方任何时间修改提示框的所有配置<br/>
-			10.IE6的兼容<br/>
+			1. IE6的兼容(<b>放弃</b>)<br/>
+			2. 进入和退出宽高的独立(由于实际意义不大<b>放弃</b>)<br/>
+			3. 开发者配置输入数据的验证以及提示加之纠正(由于实际意义不大<b>放弃</b>)<br/>
+			4. 如果浏览器右下角已经有了提示框则新的提示框在其上方显示(在没有配置显示框的位置的时候可以, 如果设置了则以设置的值为主, 且只针对相对浏览器静止的显示方式, 不兼容IE6)<br/>
+		</p>
+		
+		<h4>六、下一版本<b>预计</b>升级功能</h4>
+		<p>
+			<!-- 1. 开发者配置输入数据的验证以及提示加之纠正<br/> -->
+			<!-- 2. 加入可配置是否相对浏览器静止<br/> -->
+			<!-- 3. 指定提示框显示的地点（传入节点id名或者class名，已经实现，在生成提示框的时候用需要显示的节点的id或者class名初始化；初始化和调用可以是不同节点，注意用class初始化，默认在<br/>
+			第一次使用该class名的节点上显示）<br/> -->
+			<!-- 4. <b>考虑</b>将提示框的宽高设置和默认为显示节点宽高作为可选项（可以选择提示框使用css配置的宽高（传入css切设置宽高）还是默认节点宽高（传入css切不设置宽高、或者宽高为0、或者宽<br/>
+			高为‘auto’），实际已经实现只是不容易配置）<br/> -->
+			<!-- 5. 进入和退出宽高的独立<br/> -->
+			<!-- 7. 如果浏览器右下角已经有了提示框则新的提示框在其上方显示(在没有配置显示框的位置的时候可以, 如果设置了则以设置的值为主, 且只针对相对浏览器静止的显示方式, 不兼容IE6)<br/> -->
+			1. 显示和消失过程中overflow部分的样式不是让其向下抵而是直接隐藏<br/>
+			2. 可以在任何地方任何时间修改提示框的所有配置<br/>
+			3. 加入可选配置：提示框自带关闭按钮<br/>
 		</p>
 	</div>
 	

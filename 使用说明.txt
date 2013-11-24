@@ -18,6 +18,8 @@
 14. 开发者可以配置提示框延迟消失效果（如点击一个div后等1000毫秒再消失）；（默认没有延迟）
 15. 开发者可以配置提示框的透明度（默认为不透明）
 16. 其中消失、显示效果相互独立，开发者可以将对应效果根据需要自由叠加
+17. 在调用显示和消失时以参数形式传入需要显示的内容
+18. 可以选择是否相对浏览器静止
 
 兼容性说明：支持 IE7+，其他主流浏览器(在IE6下没有相对浏览器静止的效果)
 特别说明：
@@ -47,6 +49,7 @@ outClassName: 'fjdialog_hidden_default_style',
 			
 /*-----------------------------高级点的设置--------------------------------*/
 displayedInTheBrowser: true, // 显示在浏览器边界, 默认样式, 设置为false则显示在点击节点内或附近显示
+positionIsFixed: true, // 相对浏览器静止显示
 showTimeOut: 0, //事件发生后延迟多少时间显示dialog
 hiddenTimeOut: 0, //消失时间触发后后延迟多少时间让dialog消失
 autoHiddeenTime: 0, // 自动消失时间, 如果为0则不自动消失, 需要调用hidden()才会消失
@@ -70,15 +73,13 @@ var publicFjDialog = $("body").fjDialog(fjDialogSettings);// fjDialogSettings为
 
 $("#1").click(publicFjDialog.showDialog);
 $("#2").click(publicFjDialog.hiddenDialog);
-
+$("#3").click(function(){
+	publicFjDialog.showDialog("show something");
+});
+$("#4").click(function(){
+	publicFjDialog.hiddenDialog("or something");
+});
 三、需要改进和实现的功能
-1. 开发者配置输入数据的验证以及提示加之纠正
-2. 加入可配置是否相对浏览器静止
-3. 指定提示框显示的地点（传入节点id名或者class名，已经实现，在生成提示框的时候用需要显示的节点的id或者class名初始化；初始化和调用可以是不同节点，注意用class初始化，默认在第一次使用该class名的节点上显示）
-4. 考虑将提示框的宽高设置和默认为显示节点宽高作为可选项（可以选择提示框使用css配置的宽高（传入css切设置宽高）还是默认节点宽高（传入css切不设置宽高、或者宽高为0、或者宽高为‘auto’），实际已经实现只是不容易配置）
-5. 进入和退出宽高的独立
-6. 是否内容居中可以配置（考虑）
-7. 如果浏览器右下角已经有了提示框则新的提示框在其上方显示
-8. 显示和消失过程中overflow部分的样式不是让其向下抵而是直接隐藏
-9.高级模式，可以在任何地方任何时间修改提示框的所有配置
-10.IE6的兼容
+1. 显示和消失过程中overflow部分的样式不是让其向下抵而是直接隐藏
+2. 可以在任何地方任何时间修改提示框的所有配置
+3. 加入可选配置：提示框自带关闭按钮
